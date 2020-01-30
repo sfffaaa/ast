@@ -3,6 +3,7 @@
 
 #include "lexer.h"
 #include "token.h"
+#include "parser.h"
 
 TEST(TokenSuit, TokenEqual)
 {
@@ -50,6 +51,23 @@ TEST(LexerSuit, lexerGetNextTokenMultiple)
 	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "4")) << "The token isn't the same";
 	EXPECT_EQ(l.getNextToken(), Token(RPAREN_TYPE, ")")) << "The token isn't the same";
 	EXPECT_EQ(l.getNextToken(), Token(EOF_TYPE, "")) << "The token isn't the same";
+}
+
+TEST(ParserSuit, parserParser01)
+{
+	Lexer l = Lexer("1");
+	Parser p = Parser(l);
+	EXPECT_EQ(p.parse()->getToken(), Token(INTEGER_TYPE, "1"));
+}
+
+TEST(ParserSuit, parserParser02)
+{
+	Lexer l = Lexer("1 + 2");
+	Parser p = Parser(l);
+	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
+	EXPECT_EQ(root->getToken(), Token(PLUS_TYPE, "+"));
+	EXPECT_EQ(root->left->getToken(), Token(INTEGER_TYPE, "1"));
+	EXPECT_EQ(root->right->getToken(), Token(INTEGER_TYPE, "2"));
 }
 
 int main(int argc, char **argv) {
