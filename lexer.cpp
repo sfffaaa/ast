@@ -1,5 +1,5 @@
 #include "lexer.h"
-#include <iostream>
+#include "token.h"
 
 void Lexer::advance() {
 	this->pos += 1;
@@ -17,5 +17,34 @@ void Lexer::skipWhitespace() {
 }
 
 Token Lexer::getNextToken() {
-	return Token("", "");
+	while (this->currentChar != '\0') {
+		if (isspace(this->currentChar)) {
+			this->skipWhitespace();
+		} else if (isdigit(this->currentChar)) {
+			Token t("INTEGER", std::string("") + this->currentChar);
+			this->advance();
+			return t;
+		} else if (this->currentChar == '+') {
+			this->advance();
+			return Token("PLUS", "+");
+		} else if (this->currentChar == '-') {
+			this->advance();
+			return Token("MINUS", "-");
+		} else if (this->currentChar == '*') {
+			this->advance();
+			return Token("MUL", "*");
+		} else if (this->currentChar == '/') {
+			this->advance();
+			return Token("DIV", "/");
+		} else if (this->currentChar == '(') {
+			this->advance();
+			return Token("LPAREN", "(");
+		} else if (this->currentChar == ')') {
+			this->advance();
+			return Token("RPAREN", ")");
+		} else {
+			throw std::exception();
+		}
+	}
+	return Token("EOF", "");
 }
