@@ -59,7 +59,7 @@ TEST(ParserSuit, parserParser01)
 	Parser p = Parser(l);
 	Num* root = dynamic_cast<Num*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
-	ASSERT_EQ(p.parse()->getToken(), Token(INTEGER_TYPE, "1"));
+	ASSERT_EQ(root->getToken(), Token(INTEGER_TYPE, "1"));
 }
 
 TEST(ParserSuit, parserParser02)

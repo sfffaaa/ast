@@ -17,6 +17,8 @@ class BinaryOP : public AST {
 		Token token;
 		Token op;
 
+	public:
+		BinaryOP(AST* l, Token t, AST* r) : left(l), right(r), token(t), op(t) {};
 	Token getToken() { return token; };
 	int visit() { return 0; };
 
@@ -26,6 +28,9 @@ class BinaryOP : public AST {
 class Num : public AST {
 	public:
 		Token token;
+
+	public:
+		Num(Token t) : token(t) {};
 
 	Token getToken() { return token; };
 	int visit() { return stoi(token.value); };
@@ -38,13 +43,15 @@ class Parser {
 		Token currentToken;
 
 	public:
-		Parser(Lexer l): lexer(l), currentToken(Token("EOP", "")) {};
+		Parser(Lexer l): lexer(l), currentToken(Token("EOP", "")) {
+			this->currentToken = this->lexer.getNextToken();
+		};
 
 		void eat(const std::string& tokenType);
 		AST* factor();
 		AST* term();
-		AST* expr() {return NULL; };
-		AST* parse() { return this->expr(); };
+		AST* expr();
+		AST* parse();
 };
 
 #endif

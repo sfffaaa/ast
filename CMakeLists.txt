@@ -8,7 +8,8 @@ include_directories(${gtest_SOURCE_DIR}/include/)
 add_executable(
     unit_test
     test.cpp
-    lexer.cpp)
+    lexer.cpp
+    parser.cpp)
 
 target_link_libraries(
     unit_test
