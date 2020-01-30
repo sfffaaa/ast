@@ -18,7 +18,7 @@ class BinaryOP : public AST {
 		Token op;
 
 	Token getToken() { return token; };
-	int visit();
+	int visit() { return 0; };
 
 	virtual ~BinaryOP() {}
 };
@@ -37,10 +37,13 @@ class Parser {
 		Lexer lexer;
 		Token currentToken;
 
+	public:
+		Parser(Lexer l): lexer(l), currentToken(Token("EOP", "")) {};
+
 		void eat(const std::string& tokenType);
 		AST* factor();
 		AST* term();
-		AST* expr();
+		AST* expr() {return NULL; };
 		AST* parse() { return this->expr(); };
 };
 
