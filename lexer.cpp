@@ -9,3 +9,9 @@ void Lexer::advance() {
 		this->currentChar = this->text[this->pos];
 	}
 }
+
+void Lexer::skipWhitespace() {
+	while (this->currentChar != '\0' && isspace(this->currentChar)) {
+		this->advance();
+	}
+}
