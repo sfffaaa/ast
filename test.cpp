@@ -1,9 +1,18 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-TEST(IntegerInputsSuite, simpleSum)
+#include "lexer.h"
+#include "token.h"
+
+TEST(LexerSuite, lexerAdvance)
 {
-  EXPECT_EQ(5, 6) << "The sum is not correct";
+	Lexer l = Lexer("1 + 3");
+	l.advance();
+	EXPECT_EQ(l.currentChar, '1') << "The currentChar is not correct";
+	l.advance();
+	EXPECT_EQ(l.currentChar, '+') << "The currentChar is not correct";
+	l.advance();
+	EXPECT_EQ(l.currentChar, '3') << "The currentChar is not correct";
 }
 
 int main(int argc, char **argv) {
