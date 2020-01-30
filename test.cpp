@@ -6,8 +6,7 @@
 
 TEST(LexerSuite, lexerAdvance)
 {
-	Lexer l = Lexer("1 + 3");
-	l.advance();
+	Lexer l = Lexer("1+3");
 	EXPECT_EQ(l.currentChar, '1') << "The currentChar is not correct";
 	l.advance();
 	EXPECT_EQ(l.currentChar, '+') << "The currentChar is not correct";
