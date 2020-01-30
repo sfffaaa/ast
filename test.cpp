@@ -4,6 +4,13 @@
 #include "lexer.h"
 #include "token.h"
 
+TEST(TokenSuit, TokenEqual)
+{
+	EXPECT_EQ(Token("a", "b"), Token("a", "b")) << "Two tokens should be the same";
+	EXPECT_NE(Token("a", "b"), Token("c", "b")) << "Two tokens shouldn't be the same";
+	EXPECT_NE(Token("a", "b"), Token("a", "c")) << "Two tokens shouldn't be the same";
+}
+
 TEST(LexerSuite, lexerAdvance)
 {
 	Lexer l = Lexer("1+3");

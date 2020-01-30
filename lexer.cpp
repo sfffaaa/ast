@@ -15,3 +15,7 @@ void Lexer::skipWhitespace() {
 		this->advance();
 	}
 }
+
+Token Lexer::getNextToken() {
+	return Token("", "");
+}
