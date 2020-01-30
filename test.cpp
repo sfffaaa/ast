@@ -14,6 +14,13 @@ TEST(LexerSuite, lexerAdvance)
 	EXPECT_EQ(l.currentChar, '3') << "The currentChar is not correct";
 }
 
+TEST(LexerSuite, lexerSkipWhiteSpace)
+{
+	Lexer l = Lexer("  1");
+	l.skipWhitespace();
+	EXPECT_EQ(l.currentChar, '1') << "The currentChar is not correct";
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
