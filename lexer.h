@@ -16,7 +16,6 @@ class Lexer {
 	public:
 		void advance();
 		void skipWhitespace();
-		int integer();
 		Token getNextToken();
 };
 
