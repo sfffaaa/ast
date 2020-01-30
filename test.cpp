@@ -31,25 +31,25 @@ TEST(LexerSuite, lexerSkipWhiteSpace)
 TEST(LexerSuit, lexerGetNextToken)
 {
 	Lexer l = Lexer("1+2");
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "1")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("PLUS", "+")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "2")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("EOF", "")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "1")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(PLUS_TYPE, "+")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "2")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(EOF_TYPE, "")) << "The token isn't the same";
 }
 
 TEST(LexerSuit, lexerGetNextTokenMultiple)
 {
 	Lexer l = Lexer(" 1 + 2   / (3     * 4)");
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "1")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("PLUS", "+")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "2")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("DIV", "/")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("LPAREN", "(")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "3")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("MUL", "*")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("INTEGER", "4")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("RPAREN", ")")) << "The token isn't the same";
-	EXPECT_EQ(l.getNextToken(), Token("EOF", "")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "1")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(PLUS_TYPE, "+")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "2")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(DIVIDE_TYPE, "/")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(LPAREN_TYPE, "(")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "3")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(MULTIPLE_TYPE, "*")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(INTEGER_TYPE, "4")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(RPAREN_TYPE, ")")) << "The token isn't the same";
+	EXPECT_EQ(l.getNextToken(), Token(EOF_TYPE, "")) << "The token isn't the same";
 }
 
 int main(int argc, char **argv) {

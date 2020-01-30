@@ -3,6 +3,15 @@
 
 #include <string>
 
+#define INTEGER_TYPE "INTEGER"
+#define PLUS_TYPE "PLUS"
+#define MINUS_TYPE "MINUS"
+#define MULTIPLE_TYPE "MUL"
+#define DIVIDE_TYPE "DIV"
+#define LPAREN_TYPE "LPAREN"
+#define RPAREN_TYPE "RPAREN"
+#define EOF_TYPE "EOF"
+
 class Token {
 	public:
 		std::string type;

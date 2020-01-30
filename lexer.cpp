@@ -21,27 +21,27 @@ Token Lexer::getNextToken() {
 		if (isspace(this->currentChar)) {
 			this->skipWhitespace();
 		} else if (isdigit(this->currentChar)) {
-			Token t("INTEGER", std::string("") + this->currentChar);
+			Token t(INTEGER_TYPE, std::string("") + this->currentChar);
 			this->advance();
 			return t;
 		} else if (this->currentChar == '+') {
 			this->advance();
-			return Token("PLUS", "+");
+			return Token(PLUS_TYPE, "+");
 		} else if (this->currentChar == '-') {
 			this->advance();
-			return Token("MINUS", "-");
+			return Token(MINUS_TYPE, "-");
 		} else if (this->currentChar == '*') {
 			this->advance();
-			return Token("MUL", "*");
+			return Token(MULTIPLE_TYPE, "*");
 		} else if (this->currentChar == '/') {
 			this->advance();
-			return Token("DIV", "/");
+			return Token(DIVIDE_TYPE, "/");
 		} else if (this->currentChar == '(') {
 			this->advance();
-			return Token("LPAREN", "(");
+			return Token(LPAREN_TYPE, "(");
 		} else if (this->currentChar == ')') {
 			this->advance();
-			return Token("RPAREN", ")");
+			return Token(RPAREN_TYPE, ")");
 		} else {
 			throw std::exception();
 		}
