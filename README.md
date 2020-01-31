@@ -6,6 +6,7 @@ Follow this link first, https://ruslanspivak.com/lsbasi-part7/
 [Dependency]
 	Install gtest, https://github.com/iat-cener/tonatiuh/wiki/Installing-Google-Test-For-Mac
 
-
+[TODO]
 1. Memory leak
 2. Change interface for usage easily
+3. Cannot call parser.parse twice

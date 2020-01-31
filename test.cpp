@@ -154,7 +154,10 @@ TEST(InterpreterSuit, goldenCase02)
 
 TEST(InterpreterSuit, goldenCase03)
 {
-	ASSERT_THROW(Parser(Lexer("10 + 1")), std::exception);
+	Lexer l = Lexer("10 + 1");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_THROW(interpreter.interpret(), std::exception);
 }
 
 TEST(InterpreterSuit, goldenCase04)

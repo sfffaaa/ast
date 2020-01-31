@@ -55,6 +55,7 @@ AST* Parser::expr() {
 }
 
 AST* Parser::parse() {
+	this->currentToken = this->lexer.getNextToken();
 	return this->expr();
 }
 

@@ -45,9 +45,7 @@ class Parser {
 		Token currentToken;
 
 	public:
-		Parser(Lexer l): lexer(l), currentToken(Token("EOP", "")) {
-			this->currentToken = this->lexer.getNextToken();
-		};
+		Parser(Lexer l): lexer(l), currentToken(Token("EOP", "")) {};
 
 		void eat(const std::string& tokenType);
 		AST* factor();
