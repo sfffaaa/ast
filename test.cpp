@@ -16,18 +16,24 @@ TEST(TokenSuit, TokenEqual)
 TEST(LexerSuite, lexerAdvance)
 {
 	Lexer l = Lexer("1+3");
-	ASSERT_EQ(l.currentChar, '1') << "The currentChar is not correct";
+	ASSERT_EQ(l.getCurrentChar(), '1') << "The currentChar is not correct";
 	l.advance();
-	ASSERT_EQ(l.currentChar, '+') << "The currentChar is not correct";
+	ASSERT_EQ(l.getCurrentChar(), '+') << "The currentChar is not correct";
 	l.advance();
-	ASSERT_EQ(l.currentChar, '3') << "The currentChar is not correct";
+	ASSERT_EQ(l.getCurrentChar(), '3') << "The currentChar is not correct";
+}
+
+TEST(LexerSuite, lexerDigital)
+{
+	Lexer l = Lexer("10");
+	ASSERT_THROW(l.getNextToken(), std::exception);
 }
 
 TEST(LexerSuite, lexerSkipWhiteSpace)
 {
 	Lexer l = Lexer("  1");
 	l.skipWhitespace();
-	ASSERT_EQ(l.currentChar, '1') << "The currentChar is not correct";
+	ASSERT_EQ(l.getCurrentChar(), '1') << "The currentChar is not correct";
 }
 
 TEST(LexerSuit, lexerGetNextToken)

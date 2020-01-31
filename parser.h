@@ -40,7 +40,7 @@ class Num : public AST {
 };
 
 class Parser {
-	public:
+	private:
 		Lexer lexer;
 		Token currentToken;
 

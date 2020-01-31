@@ -5,7 +5,7 @@
 #include "token.h"
 
 class Lexer {
-	public:
+	private:
 		std::string text;
 		size_t pos;
 		char currentChar;
@@ -14,6 +14,7 @@ class Lexer {
 		Lexer(const std::string& t) : text(t), pos(0), currentChar(t[0]) {};
 
 	public:
+		char getCurrentChar() {return currentChar; };
 		void advance();
 		void skipWhitespace();
 		Token getNextToken();

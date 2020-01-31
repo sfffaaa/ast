@@ -4,12 +4,14 @@
 #include "parser.h"
 
 class Interpreter {
-	public:
+	private:
 		Parser parser;
-		int interpret();
 
 	public:
 		Interpreter(const std::string& s) : parser(Parser(s)) {};
+
+	public:
+		int interpret();
 
 	private:
 		int visit(AST* node) {
