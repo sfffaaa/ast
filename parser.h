@@ -50,11 +50,14 @@ class Parser {
 	public:
 		Parser(const std::string& s): lexer(Lexer(s)), currentToken(Token("EOP", "")) {};
 
+	public:
+		AST* parse();
+
+	private:
 		void eat(const std::string& tokenType);
 		AST* factor();
 		AST* term();
 		AST* expr();
-		AST* parse();
 };
 
 #endif
