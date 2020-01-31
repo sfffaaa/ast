@@ -5,8 +5,14 @@
 #include "lexer.h"
 
 class AST {
+	protected:
+		Token token;
+
 	public:
-		virtual Token getToken() = 0;
+		AST(Token t) : token(t) {};
+
+	public:
+		Token getToken() { return token; };
 		virtual int visit() = 0;
 };
 
@@ -14,12 +20,9 @@ class BinaryOP : public AST {
 	public:
 		AST* left;
 		AST* right;
-		Token token;
-		Token op;
 
 	public:
-		BinaryOP(AST* l, Token t, AST* r) : left(l), right(r), token(t), op(t) {};
-	Token getToken() { return token; };
+		BinaryOP(AST* l, Token t, AST* r) : AST(t), left(l), right(r) {};
 	int visit();
 
 	virtual ~BinaryOP() {}
@@ -27,12 +30,8 @@ class BinaryOP : public AST {
 
 class Num : public AST {
 	public:
-		Token token;
+		Num(Token t) : AST(t) {};
 
-	public:
-		Num(Token t) : token(t) {};
-
-	Token getToken() { return token; };
 	int visit() {
 		return stoi(token.value);
 	};

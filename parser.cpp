@@ -60,13 +60,13 @@ AST* Parser::parse() {
 }
 
 int BinaryOP::visit() {
-	if (this->op.type == PLUS_TYPE) {
+	if (this->token.type == PLUS_TYPE) {
 		return left->visit() + right->visit();
-	} else if (this->op.type == MINUS_TYPE) {
+	} else if (this->token.type == MINUS_TYPE) {
 		return left->visit() - right->visit();
-	} else if (this->op.type == MULTIPLE_TYPE) {
+	} else if (this->token.type == MULTIPLE_TYPE) {
 		return left->visit() * right->visit();
-	} else if (this->op.type == DIVIDE_TYPE) {
+	} else if (this->token.type == DIVIDE_TYPE) {
 		return left->visit() / right->visit();
 	} else {
 		throw std::exception();
