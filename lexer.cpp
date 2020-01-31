@@ -16,13 +16,25 @@ void Lexer::skipWhitespace() {
 	}
 }
 
+std::string Lexer::integer() {
+	std::string result("");
+	while (this->currentChar != '\0' && isdigit(this->currentChar)) {
+		result += this->currentChar;
+		this->advance();
+	}
+	if (result.length() > 1) {
+		throw std::exception();
+	} else {
+		return result;
+	}
+}
+
 Token Lexer::getNextToken() {
 	while (this->currentChar != '\0') {
 		if (isspace(this->currentChar)) {
 			this->skipWhitespace();
 		} else if (isdigit(this->currentChar)) {
-			Token t(INTEGER_TYPE, std::string("") + this->currentChar);
-			this->advance();
+			Token t(INTEGER_TYPE, this->integer());
 			return t;
 		} else if (this->currentChar == '+') {
 			this->advance();

@@ -17,6 +17,9 @@ class Lexer {
 		void advance();
 		void skipWhitespace();
 		Token getNextToken();
+
+	private:
+		std::string integer();
 };
 
 #endif

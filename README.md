@@ -8,3 +8,4 @@ Follow this link first, https://ruslanspivak.com/lsbasi-part7/
 
 
 1. Memory leak
+2. Change interface for usage easily
