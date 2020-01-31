@@ -4,6 +4,7 @@
 #include "lexer.h"
 #include "token.h"
 #include "parser.h"
+#include "interpreter.h"
 
 TEST(TokenSuit, TokenEqual)
 {
@@ -91,6 +92,14 @@ TEST(ParserSuit, parserParser03)
 	ASSERT_EQ(node->left->getToken(), Token(INTEGER_TYPE, "2"));
 	ASSERT_NE(node->right, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
+}
+
+TEST(InterpreterSuit, interpreterVisit)
+{
+	Lexer l = Lexer("1");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_EQ(interpreter.interpret(), 1);
 }
 
 int main(int argc, char **argv) {
