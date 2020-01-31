@@ -22,7 +22,11 @@ class BinaryOP : public AST {
 		AST* right;
 
 	public:
-		BinaryOP(AST* l, Token t, AST* r) : AST(t), left(l), right(r) {};
+		BinaryOP(AST* l, Token t, AST* r) : AST(t), left(l), right(r) {
+			if (!l || !r) {
+				throw std::exception();
+			}
+		};
 	int visit();
 
 	virtual ~BinaryOP() {}

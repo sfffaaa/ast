@@ -15,6 +15,9 @@ class Interpreter {
 
 	private:
 		int visit(AST* node) {
+			if (!node) {
+				throw std::exception();
+			}
 			return node->visit();
 		};
 };
