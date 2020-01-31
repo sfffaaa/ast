@@ -152,6 +152,22 @@ TEST(InterpreterSuit, goldenCase02)
 	ASSERT_EQ(interpreter.interpret(), 12);
 }
 
+TEST(InterpreterSuit, goldenCase03)
+{
+	Lexer l = Lexer("10 + 1");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_THROW(interpreter.interpret(), std::exception);
+}
+
+TEST(InterpreterSuit, goldenCase04)
+{
+	Lexer l = Lexer("-10");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_THROW(interpreter.interpret(), std::exception);
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
