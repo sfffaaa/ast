@@ -6,11 +6,13 @@
 class Interpreter {
 	public:
 		Parser parser;
-		int visit();
 		int interpret();
 
+	public:
+		Interpreter(Parser p) : parser(p) {};
+
 	private:
-		int visit_imp(AST* node) {
+		int visit(AST* node) {
 			return node->visit();
 		};
 };

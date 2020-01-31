@@ -9,7 +9,8 @@ add_executable(
     unit_test
     test.cpp
     lexer.cpp
-    parser.cpp)
+    parser.cpp
+    interpreter.cpp)
 
 target_link_libraries(
     unit_test
