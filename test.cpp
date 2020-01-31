@@ -75,6 +75,24 @@ TEST(ParserSuit, parserParser02)
 	ASSERT_EQ(root->right->getToken(), Token(INTEGER_TYPE, "2"));
 }
 
+TEST(ParserSuit, parserParser03)
+{
+	Lexer l = Lexer("1 * (2 + 3)");
+	Parser p = Parser(l);
+	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
+	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(root->getToken(), Token(MULTIPLE_TYPE, "*"));
+	ASSERT_NE(root->left, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(root->left->getToken(), Token(INTEGER_TYPE, "1"));
+	ASSERT_NE(root->right, nullptr) << "Shouldn't be nullptr";
+	BinaryOP* node = dynamic_cast<BinaryOP*>(root->right);
+	ASSERT_EQ(node->getToken(), Token(PLUS_TYPE, "+"));
+	ASSERT_NE(node->left, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(node->left->getToken(), Token(INTEGER_TYPE, "2"));
+	ASSERT_NE(node->right, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
