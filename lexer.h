@@ -11,7 +11,7 @@ class Lexer {
 		char currentChar;
 
 	public:
-		Lexer(std::string t) : text(t), pos(0), currentChar(t[0]) {};
+		Lexer(const std::string& t) : text(t), pos(0), currentChar(t[0]) {};
 
 	public:
 		void advance();

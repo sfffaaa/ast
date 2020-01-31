@@ -9,7 +9,7 @@ class Interpreter {
 		int interpret();
 
 	public:
-		Interpreter(Parser p) : parser(p) {};
+		Interpreter(const std::string& s) : parser(Parser(s)) {};
 
 	private:
 		int visit(AST* node) {

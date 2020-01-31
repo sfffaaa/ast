@@ -56,8 +56,7 @@ TEST(LexerSuit, lexerGetNextTokenMultiple)
 
 TEST(ParserSuit, parserParser01)
 {
-	Lexer l = Lexer("1");
-	Parser p = Parser(l);
+	Parser p = Parser("1");
 	Num* root = dynamic_cast<Num*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->getToken(), Token(INTEGER_TYPE, "1"));
@@ -65,8 +64,7 @@ TEST(ParserSuit, parserParser01)
 
 TEST(ParserSuit, parserParser02)
 {
-	Lexer l = Lexer("1 + 2");
-	Parser p = Parser(l);
+	Parser p = Parser("1 + 2");
 	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->getToken(), Token(PLUS_TYPE, "+"));
@@ -78,8 +76,7 @@ TEST(ParserSuit, parserParser02)
 
 TEST(ParserSuit, parserParser03)
 {
-	Lexer l = Lexer("1 * (2 + 3)");
-	Parser p = Parser(l);
+	Parser p = Parser("1 * (2 + 3)");
 	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->getToken(), Token(MULTIPLE_TYPE, "*"));
@@ -96,8 +93,7 @@ TEST(ParserSuit, parserParser03)
 
 TEST(ParserSuit, parserParser04)
 {
-	Lexer l = Lexer("1+2+3");
-	Parser p = Parser(l);
+	Parser p = Parser("1+2+3");
 	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->getToken(), Token(PLUS_TYPE, "+"));
@@ -114,57 +110,43 @@ TEST(ParserSuit, parserParser04)
 
 TEST(InterpreterSuit, interpreterVisit01)
 {
-	Lexer l = Lexer("1");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("1");
 	ASSERT_EQ(interpreter.interpret(), 1);
 }
 
 TEST(InterpreterSuit, interpreterVisit02)
 {
-	Lexer l = Lexer("1 + 2");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("1 + 2");
 	ASSERT_EQ(interpreter.interpret(), 3);
 }
 
 TEST(InterpreterSuit, interpreterVisit03)
 {
-	Lexer l = Lexer("1 + 2 * 3");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("1 + 2 * 3");
 	ASSERT_EQ(interpreter.interpret(), 7);
 }
 
 TEST(InterpreterSuit, goldenCase01)
 {
-	Lexer l = Lexer("(4 + 5 * (7 - 3)) - 2");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("(4 + 5 * (7 - 3)) - 2");
 	ASSERT_EQ(interpreter.interpret(), 22);
 }
 
 TEST(InterpreterSuit, goldenCase02)
 {
-	Lexer l = Lexer("4+5+7/2");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("4+5+7/2");
 	ASSERT_EQ(interpreter.interpret(), 12);
 }
 
 TEST(InterpreterSuit, goldenCase03)
 {
-	Lexer l = Lexer("10 + 1");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("10 + 1");
 	ASSERT_THROW(interpreter.interpret(), std::exception);
 }
 
 TEST(InterpreterSuit, goldenCase04)
 {
-	Lexer l = Lexer("-10");
-	Parser p = Parser(l);
-	Interpreter interpreter = Interpreter(p);
+	Interpreter interpreter = Interpreter("-10");
 	ASSERT_THROW(interpreter.interpret(), std::exception);
 }
 
