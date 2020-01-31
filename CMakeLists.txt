@@ -5,6 +5,12 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(${gtest_SOURCE_DIR}/include/)
 
+add_compile_options(
+-Wall
+-Wextra
+-Werror
+)
+
 add_executable(
     unit_test
     test.cpp
