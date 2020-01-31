@@ -14,10 +14,12 @@ class Lexer {
 		Lexer(const std::string& t) : text(t), pos(0), currentChar(t[0]) {};
 
 	public:
+		Token getNextToken();
+
+		// Should be private but now public for testing
 		char getCurrentChar() {return currentChar; };
 		void advance();
 		void skipWhitespace();
-		Token getNextToken();
 
 	private:
 		std::string integer();

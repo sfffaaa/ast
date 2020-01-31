@@ -72,3 +72,16 @@ int BinaryOP::visit() {
 		throw std::exception();
 	}
 }
+
+void BinaryOP::cleanSubtree() {
+	if (this->left) {
+		this->left->cleanSubtree();
+		delete this->left;
+		this->left = nullptr;
+	}
+	if (this->right) {
+		right->cleanSubtree();
+		delete this->right;
+		this->right = nullptr;
+	}
+}

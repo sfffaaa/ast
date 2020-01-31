@@ -14,6 +14,9 @@ class AST {
 	public:
 		Token getToken() { return token; };
 		virtual int visit() = 0;
+		virtual void cleanSubtree() = 0;
+
+		virtual ~AST() {};
 };
 
 class BinaryOP : public AST {
@@ -27,9 +30,8 @@ class BinaryOP : public AST {
 				throw std::exception();
 			}
 		};
-	int visit();
-
-	virtual ~BinaryOP() {}
+		int visit();
+		void cleanSubtree();
 };
 
 class Num : public AST {
@@ -39,7 +41,7 @@ class Num : public AST {
 	int visit() {
 		return stoi(token.value);
 	};
-	virtual ~Num() {};
+	void cleanSubtree() {};
 };
 
 class Parser {

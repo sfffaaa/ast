@@ -66,6 +66,9 @@ TEST(ParserSuit, parserParser01)
 	Num* root = dynamic_cast<Num*>(p.parse());
 	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->getToken(), Token(INTEGER_TYPE, "1"));
+
+	root->cleanSubtree();
+	delete root;
 }
 
 TEST(ParserSuit, parserParser02)
@@ -78,6 +81,9 @@ TEST(ParserSuit, parserParser02)
 	ASSERT_EQ(root->left->getToken(), Token(INTEGER_TYPE, "1"));
 	ASSERT_NE(root->right, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->right->getToken(), Token(INTEGER_TYPE, "2"));
+
+	root->cleanSubtree();
+	delete root;
 }
 
 TEST(ParserSuit, parserParser03)
@@ -95,6 +101,9 @@ TEST(ParserSuit, parserParser03)
 	ASSERT_EQ(node->left->getToken(), Token(INTEGER_TYPE, "2"));
 	ASSERT_NE(node->right, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
+
+	root->cleanSubtree();
+	delete root;
 }
 
 TEST(ParserSuit, parserParser04)
@@ -112,6 +121,9 @@ TEST(ParserSuit, parserParser04)
 	ASSERT_EQ(node->left->getToken(), Token(INTEGER_TYPE, "2"));
 	ASSERT_NE(node->right, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
+
+	root->cleanSubtree();
+	delete root;
 }
 
 TEST(InterpreterSuit, interpreterVisit01)
