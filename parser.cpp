@@ -33,7 +33,7 @@ AST* Parser::term() {
 		} else if (t.type == DIVIDE_TYPE) {
 			this->eat(DIVIDE_TYPE);
 		}
-		AST* root = new BinaryOP(node, t, this->factor());
+		AST* root = new BinaryOP(node, t, this->term());
 		return root;
 	}
 	return node;
@@ -48,7 +48,7 @@ AST* Parser::expr() {
 		} else if (t.type == MINUS_TYPE) {
 			this->eat(MINUS_TYPE);
 		}
-		AST* root = new BinaryOP(node, t, this->term());
+		AST* root = new BinaryOP(node, t, this->expr());
 		return root;
 	}
 	return node;

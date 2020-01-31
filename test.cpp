@@ -104,7 +104,6 @@ TEST(ParserSuit, parserParser04)
 	ASSERT_NE(root->left, nullptr) << "Shouldn't be nullptr";
 	ASSERT_EQ(root->left->getToken(), Token(INTEGER_TYPE, "1"));
 	ASSERT_NE(root->right, nullptr) << "Shouldn't be nullptr";
-	std::cout << root->right->getToken().value << std::endl;
 	BinaryOP* node = dynamic_cast<BinaryOP*>(root->right);
 	ASSERT_EQ(node->getToken(), Token(PLUS_TYPE, "+"));
 	ASSERT_NE(node->left, nullptr) << "Shouldn't be nullptr";
@@ -147,7 +146,7 @@ TEST(InterpreterSuit, goldenCase01)
 
 TEST(InterpreterSuit, goldenCase02)
 {
-	Lexer l = Lexer("4+5+7");
+	Lexer l = Lexer("4+5+7/2");
 	Parser p = Parser(l);
 	Interpreter interpreter = Interpreter(p);
 	ASSERT_EQ(interpreter.interpret(), 12);
