@@ -8,5 +8,4 @@ Follow this link first, https://ruslanspivak.com/lsbasi-part7/
 
 [TODO]
 1. Memory leak
-2. Change interface for usage easily
 3. Cannot call parser.parse twice
