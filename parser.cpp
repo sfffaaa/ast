@@ -57,3 +57,17 @@ AST* Parser::expr() {
 AST* Parser::parse() {
 	return this->expr();
 }
+
+int BinaryOP::visit() {
+	if (this->op.type == PLUS_TYPE) {
+		return left->visit() + right->visit();
+	} else if (this->op.type == MINUS_TYPE) {
+		return left->visit() - right->visit();
+	} else if (this->op.type == MULTIPLE_TYPE) {
+		return left->visit() * right->visit();
+	} else if (this->op.type == DIVIDE_TYPE) {
+		return left->visit() / right->visit();
+	} else {
+		throw std::exception();
+	}
+}

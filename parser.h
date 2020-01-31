@@ -20,7 +20,7 @@ class BinaryOP : public AST {
 	public:
 		BinaryOP(AST* l, Token t, AST* r) : left(l), right(r), token(t), op(t) {};
 	Token getToken() { return token; };
-	int visit() { return 0; };
+	int visit();
 
 	virtual ~BinaryOP() {}
 };
@@ -33,7 +33,9 @@ class Num : public AST {
 		Num(Token t) : token(t) {};
 
 	Token getToken() { return token; };
-	int visit() { return stoi(token.value); };
+	int visit() {
+		return stoi(token.value);
+	};
 	virtual ~Num() {};
 };
 

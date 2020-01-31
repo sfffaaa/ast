@@ -94,12 +94,63 @@ TEST(ParserSuit, parserParser03)
 	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
 }
 
-TEST(InterpreterSuit, interpreterVisit)
+TEST(ParserSuit, parserParser04)
+{
+	Lexer l = Lexer("1+2+3");
+	Parser p = Parser(l);
+	BinaryOP* root = dynamic_cast<BinaryOP*>(p.parse());
+	ASSERT_NE(root, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(root->getToken(), Token(PLUS_TYPE, "+"));
+	ASSERT_NE(root->left, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(root->left->getToken(), Token(INTEGER_TYPE, "1"));
+	ASSERT_NE(root->right, nullptr) << "Shouldn't be nullptr";
+	std::cout << root->right->getToken().value << std::endl;
+	BinaryOP* node = dynamic_cast<BinaryOP*>(root->right);
+	ASSERT_EQ(node->getToken(), Token(PLUS_TYPE, "+"));
+	ASSERT_NE(node->left, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(node->left->getToken(), Token(INTEGER_TYPE, "2"));
+	ASSERT_NE(node->right, nullptr) << "Shouldn't be nullptr";
+	ASSERT_EQ(node->right->getToken(), Token(INTEGER_TYPE, "3"));
+}
+
+TEST(InterpreterSuit, interpreterVisit01)
 {
 	Lexer l = Lexer("1");
 	Parser p = Parser(l);
 	Interpreter interpreter = Interpreter(p);
 	ASSERT_EQ(interpreter.interpret(), 1);
+}
+
+TEST(InterpreterSuit, interpreterVisit02)
+{
+	Lexer l = Lexer("1 + 2");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_EQ(interpreter.interpret(), 3);
+}
+
+TEST(InterpreterSuit, interpreterVisit03)
+{
+	Lexer l = Lexer("1 + 2 * 3");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_EQ(interpreter.interpret(), 7);
+}
+
+TEST(InterpreterSuit, goldenCase01)
+{
+	Lexer l = Lexer("(4 + 5 * (7 - 3)) - 2");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_EQ(interpreter.interpret(), 22);
+}
+
+TEST(InterpreterSuit, goldenCase02)
+{
+	Lexer l = Lexer("4+5+7");
+	Parser p = Parser(l);
+	Interpreter interpreter = Interpreter(p);
+	ASSERT_EQ(interpreter.interpret(), 12);
 }
 
 int main(int argc, char **argv) {
