@@ -2,6 +2,7 @@
 #define TOKEN_HPP
 
 #include <string>
+#include <iostream>
 
 #define INTEGER_TYPE "INTEGER"
 #define PLUS_TYPE "PLUS"
@@ -29,6 +30,11 @@ class Token {
 
 		friend bool operator != (const Token& ls, const Token& rs) {
 			return !(ls == rs);
+		};
+
+		friend std::ostream& operator<< (std::ostream& out, const Token& t) {
+			out << "Token(" << t.type << ", " << t.value << ")";
+			return out;
 		};
 };
 
